@@ -30,7 +30,7 @@ class FeltoltoService
      */
     public function lekerMegyekhezVarosokat(int $me_id)
     {
-        return VarosokModel::where("va_meid","=",$me_id)->get();
+        return VarosokModel::where("va_meid", "=", $me_id)->get();
     }
 
     /**
@@ -41,11 +41,11 @@ class FeltoltoService
      */
     public function mentUjVarost(array $data)
     {
-        $varos = VarosokModel::where("va_meid","=",$data["me_id"])
-            ->where("va_nev","=",$data["ujvaros"])
+        $varos = VarosokModel::where("va_meid", "=", $data["me_id"])
+            ->where("va_nev", "=", $data["ujvaros"])
             ->first();
 
-        if(!$varos){
+        if (!$varos) {
             $varosok = new VarosokModel();
             $varosok->va_meid = $data["me_id"];
             $varosok->va_nev = $data["ujvaros"];
@@ -63,8 +63,8 @@ class FeltoltoService
      */
     public function torolVarost(array $data)
     {
-        return VarosokModel::where("va_meid","=",$data["me_id"])
-            ->where("va_nev","=",$data["torlendoNev"])
+        return VarosokModel::where("va_meid", "=", $data["me_id"])
+            ->where("va_nev", "=", $data["torlendoNev"])
             ->first()
             ->delete();
     }
@@ -77,8 +77,8 @@ class FeltoltoService
      */
     public function szerkesztVarost(array $data)
     {
-        $varos = VarosokModel::where("va_meid","=",$data["me_id"])
-            ->where("va_nev","=",$data["regiNev"])
+        $varos = VarosokModel::where("va_meid", "=", $data["me_id"])
+            ->where("va_nev", "=", $data["regiNev"])
             ->first();
         $varos->va_nev = $data["ujNev"];
         return $varos->save();
